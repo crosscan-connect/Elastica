@@ -219,8 +219,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return int Size of set
      */
-    #[\ReturnTypeWillChange]
-    public function count()
+    public function count(): int
     {
         return count($this->_results);
     }
@@ -240,8 +239,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return \Elastica\Result Set object
      */
-    #[\ReturnTypeWillChange]
-    public function current()
+    public function current(): Result
     {
         return $this->_results[$this->key()];
     }
@@ -249,8 +247,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
     /**
      * Sets pointer (current) to the next item of the set.
      */
-    #[\ReturnTypeWillChange]
-    public function next()
+    public function next(): void
     {
         ++$this->_position;
     }
@@ -260,8 +257,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return int Current position
      */
-    #[\ReturnTypeWillChange]
-    public function key()
+    public function key(): int
     {
         return $this->_position;
     }
@@ -271,8 +267,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return bool True if object exists
      */
-    #[\ReturnTypeWillChange]
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->_results[$this->key()]);
     }
@@ -280,8 +275,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
     /**
      * Resets position to 0, restarts iterator.
      */
-    #[\ReturnTypeWillChange]
-    public function rewind()
+    public function rewind(): void
     {
         $this->_position = 0;
     }
@@ -295,8 +289,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return bool true on success or false on failure
      */
-    #[\ReturnTypeWillChange]
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->_results[$offset]);
     }
@@ -312,8 +305,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @return Result
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet($offset): Result
     {
         if ($this->offsetExists($offset)) {
             return $this->_results[$offset];
@@ -332,8 +324,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @throws Exception\InvalidException
      */
-    #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (!($value instanceof Result)) {
             throw new InvalidException('ResultSet is a collection of Result only.');
@@ -353,8 +344,7 @@ class ResultSet implements \Iterator, \Countable, \ArrayAccess
      *
      * @param int $offset
      */
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->_results[$offset]);
     }
